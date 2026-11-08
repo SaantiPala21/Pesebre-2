@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia de los Reyes Magos</title>
+    <link rel="stylesheet" href="estrellas-fugaces.css">
+    <style>
+        body {
+            background-color: #0b132b; /* Azul noche profundo */
+            color: #f8db94; /* Color oro/estrella */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        /* Las estrellas pasan por detrás de la tarjeta */
+        .estrellas-fugaces {
+            z-index: 0;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 400px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        /* Círculo negro detrás del logo */
+        .logo {
+            background: #000;
+            border-radius: 50%;
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 18px rgba(0, 0, 0, 0.45);
+        }
+        .logo img {
+            display: block;
+            width: 90%;
+            height: auto;
+        }
+        p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            color: #d1d5db;
+        }
+        audio {
+            width: 100%;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cielo de Belén: estrellas que titilan, Estrella de Belén y estrellas fugaces -->
+    <div class="cielo-belen" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="estrella-belen" aria-hidden="true"></div>
+    <div class="estrellas-fugaces" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="container">
+        <div class="logo">
+            <img src="logo.png" alt="A Soto Arte Religioso — Arte hecho pasión">
+        </div>
+        <p>Acerca tu celular para escuchar la historia</p>
+
+        <!-- Asegúrate de que el nombre del archivo aquí sea igual al de tu audio -->
+        <audio id="audio-historia" controls controlsList="nodownload">
+            <source src="Pesebre.mpeg" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+    </div>
+
+    <script>
+        // Al terminar el audio, redirige al Instagram de A Soto
+        document.getElementById('audio-historia').addEventListener('ended', function () {
+            window.location.replace('https://www.instagram.com/asotoescultor/?hl=es-la');
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+/* ==========================================================
+   Cielo de Belén — A Soto Arte Religioso
+   Estrellas fijas que titilan, Estrella de Belén y estrellas fugaces.
+
+   Uso (antes del contenido de la página):
+     <div class="cielo-belen" aria-hidden="true">
+       <span></span><span></span><span></span><span></span><span></span>
+     </div>
+     <div class="estrella-belen" aria-hidden="true"></div>
+     <div class="estrellas-fugaces" aria-hidden="true">
+       <span></span> ... (10 spans)
+     </div>
+   ========================================================== */
+
+/* ---------- Estrellas fijas que titilan ---------- */
+
+.cielo-belen {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cada span es un grupo de estrellas (dibujadas con box-shadow)
+   que titila con su propio ritmo */
+.cielo-belen span {
+  --tam: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--tam);
+  height: var(--tam);
+  border-radius: 50%;
+  background: transparent;
+  animation: titilar var(--ritmo, 3s) ease-in-out infinite alternate;
+  animation-delay: var(--retraso, 0s);
+}
+
+@keyframes titilar {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.35; }
+  100% { opacity: 0.9; }
+}
+
+.cielo-belen span:nth-child(1) {
+  --tam: 1px; --ritmo: 2.6s; --retraso: 0s;
+  box-shadow:
+    38vw 76vh #ffe7a3, 15vw 21vh #fff, 32vw 60vh #fff, 19vw 51vh #fff,
+    18vw 49vh #fff, 11vw 22vh #fff, 59vw 38vh #ffe7a3, 13vw 12vh #ffe7a3,
+    26vw 78vh #fff, 52vw 39vh #fff, 55vw 78vh #ffe7a3, 16vw 2vh #ffe7a3,
+    30vw 78vh #fff, 94vw 93vh #ffe7a3, 86vw 4vh #fff, 63vw 54vh #fff;
+}
+
+.cielo-belen span:nth-child(2) {
+  --tam: 1.5px; --ritmo: 3.4s; --retraso: 0.8s;
+  box-shadow:
+    60vw 39vh #ffe7a3, 69vw 5vh #fff, 28vw 72vh #fff, 43vw 22vh #ffe7a3,
+    36vw 11vh #fff, 52vw 58vh #fff, 17vw 54vh #fff, 5vw 10vh #fff,
+    69vw 1vh #fff, 16vw 55vh #fff, 31vw 71vh #ffe7a3, 75vw 70vh #fff,
+    92vw 76vh #fff, 74vw 80vh #ffe7a3, 36vw 87vh #fff, 82vw 65vh #ffe7a3;
+}
+
+.cielo-belen span:nth-child(3) {
+  --tam: 2px; --ritmo: 4.2s; --retraso: 1.5s;
+  box-shadow:
+    27vw 5vh 1px #ffe7a3, 3vw 47vh 1px #ffe7a3, 1vw 60vh 1px #fff, 9vw 2vh 1px #ffe7a3,
+    63vw 71vh 1px #fff, 8vw 15vh 1px #ffe7a3, 82vw 26vh 1px #ffe7a3, 40vw 89vh 1px #fff,
+    86vw 31vh 1px #fff, 19vw 79vh 1px #fff, 66vw 58vh 1px #ffe7a3, 64vw 77vh 1px #ffe7a3,
+    69vw 37vh 1px #fff, 17vw 61vh 1px #ffe7a3, 38vw 30vh 1px #ffe7a3, 3vw 56vh 1px #fff;
+}
+
+.cielo-belen span:nth-child(4) {
+  --tam: 1px; --ritmo: 2.1s; --retraso: 2.2s;
+  box-shadow:
+    4vw 69vh #ffe7a3, 21vw 52vh #fff, 71vw 63vh #fff, 56vw 94vh #fff,
+    28vw 7vh #fff, 62vw 88vh #fff, 92vw 36vh #fff, 50vw 54vh #fff,
+    89vw 2vh #fff, 52vw 40vh #fff, 12vw 84vh #ffe7a3, 85vw 32vh #fff,
+    84vw 89vh #ffe7a3, 7vw 70vh #fff, 33vw 30vh #ffe7a3, 64vw 28vh #fff;
+}
+
+/* Las más brillantes, con un pequeño halo */
+.cielo-belen span:nth-child(5) {
+  --tam: 2.5px; --ritmo: 5s; --retraso: 0.4s;
+  box-shadow:
+    50vw 34vh 2px #fff, 11vw 86vh 2px #ffe7a3, 23vw 3vh 2px #fff, 65vw 36vh 2px #fff,
+    36vw 2vh 2px #fff, 16vw 23vh 2px #ffe7a3, 63vw 92vh 2px #fff, 33vw 85vh 2px #ffe7a3,
+    84vw 67vh 2px #fff, 75vw 73vh 2px #fff, 51vw 41vh 2px #fff, 54vw 29vh 2px #ffe7a3,
+    74vw 89vh 2px #fff, 7vw 50vh 2px #fff, 23vw 13vh 2px #fff, 76vw 12vh 2px #fff;
+}
+
+/* ---------- Estrella de Belén ---------- */
+
+.estrella-belen {
+  position: fixed;
+  top: 9vh;
+  right: 14vw;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fffaf0;
+  box-shadow:
+    0 0 8px 3px rgba(255, 250, 235, 0.95),
+    0 0 22px 8px rgba(255, 223, 150, 0.6),
+    0 0 60px 22px rgba(255, 200, 110, 0.25);
+  pointer-events: none;
+  z-index: 0;
+  animation: brillo-belen 4s ease-in-out infinite;
+}
+
+/* Rayos en cruz */
+.estrella-belen::before,
+.estrella-belen::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+}
+
+/* Rayo horizontal */
+.estrella-belen::before {
+  width: 90px;
+  height: 2px;
+  margin: -1px 0 0 -45px;
+  background: linear-gradient(90deg, rgba(255, 231, 163, 0), rgba(255, 245, 220, 0.95), rgba(255, 231, 163, 0));
+}
+
+/* Rayo vertical (más largo hacia abajo, como en los pesebres) */
+.estrella-belen::after {
+  width: 2px;
+  height: 150px;
+  margin: -50px 0 0 -1px;
+  background: linear-gradient(180deg, rgba(255, 231, 163, 0), rgba(255, 245, 220, 0.95) 33%, rgba(255, 231, 163, 0));
+}
+
+@keyframes brillo-belen {
+  0%, 100% { transform: scale(1);    filter: brightness(1); }
+  50%      { transform: scale(1.18); filter: brightness(1.25); }
+}
+
+/* ---------- Estrellas fugaces ---------- */
+
+.estrellas-fugaces {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.estrellas-fugaces span {
+  --largo: 140px;
+  --recorrido: 900px;
+  --duracion: 5s;
+
+  position: absolute;
+  top: var(--y, 0);
+  left: var(--x, 50%);
+  width: var(--largo);
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85));
+  opacity: 0;
+  transform: rotate(35deg) translateX(0);
+  transform-origin: right center;
+  animation: estrella-fugaz var(--duracion) linear infinite;
+  animation-delay: var(--retraso, 0s);
+}
+
+/* Cabeza luminosa de la estrella */
+.estrellas-fugaces span::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin-top: -2.5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 6px 2px rgba(255, 255, 255, 0.8),
+    0 0 14px 4px rgba(255, 223, 150, 0.45);
+}
+
+@keyframes estrella-fugaz {
+  0%   { opacity: 0; transform: rotate(35deg) translateX(0); }
+  4%   { opacity: 1; }
+  18%  { opacity: 0; transform: rotate(35deg) translateX(var(--recorrido)); }
+  100% { opacity: 0; transform: rotate(35deg) translateX(var(--recorrido)); }
+}
+
+/* Posiciones, tamaños y tiempos distintos para que no se vean repetidas.
+   Hay 10 estrellas con ciclos cortos: pasa una casi cada segundo. */
+.estrellas-fugaces span:nth-child(1)  { --x: -5%; --y: 2%;  --retraso: 0s;   --duracion: 5s;   }
+.estrellas-fugaces span:nth-child(2)  { --x: 20%; --y: -4%; --retraso: 0.9s; --duracion: 6s;   --largo: 110px; }
+.estrellas-fugaces span:nth-child(3)  { --x: 42%; --y: 6%;  --retraso: 1.7s; --duracion: 4.5s; --largo: 170px; }
+.estrellas-fugaces span:nth-child(4)  { --x: 8%;  --y: 30%; --retraso: 2.6s; --duracion: 5.5s; }
+.estrellas-fugaces span:nth-child(5)  { --x: 60%; --y: -2%; --retraso: 3.4s; --duracion: 6.5s; --largo: 120px; }
+.estrellas-fugaces span:nth-child(6)  { --x: 30%; --y: 22%; --retraso: 4.1s; --duracion: 5s;   --largo: 150px; }
+.estrellas-fugaces span:nth-child(7)  { --x: -10%;--y: 45%; --retraso: 0.5s; --duracion: 7s;   --largo: 100px; }
+.estrellas-fugaces span:nth-child(8)  { --x: 50%; --y: 15%; --retraso: 2.2s; --duracion: 5.8s; }
+.estrellas-fugaces span:nth-child(9)  { --x: 12%; --y: 60%; --retraso: 3.8s; --duracion: 6.2s; --largo: 120px; }
+.estrellas-fugaces span:nth-child(10) { --x: 70%; --y: 10%; --retraso: 1.3s; --duracion: 4.8s; --largo: 130px; }
+
+/* En pantallas pequeñas el recorrido es más corto */
+@media (max-width: 600px) {
+  .estrellas-fugaces span {
+    --recorrido: 520px;
+  }
+  .estrella-belen {
+    top: 6vh;
+    right: 12vw;
+  }
+}
+
+/* Respeta a quienes desactivan las animaciones en su dispositivo:
+   quedan las estrellas fijas, sin titilar ni estrellas fugaces */
+@media (prefers-reduced-motion: reduce) {
+  .estrellas-fugaces span {
+    animation: none;
+    opacity: 0;
+  }
+  .cielo-belen span,
+  .estrella-belen {
+    animation: none;
+  }
+}
