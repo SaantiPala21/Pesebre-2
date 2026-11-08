@@ -84,17 +84,43 @@
         <p>Acerca tu celular para escuchar la historia</p>
 
         <!-- Asegúrate de que el nombre del archivo aquí sea igual al de tu audio -->
-        <audio id="audio-historia" controls controlsList="nodownload">
+        <audio id="audio-historia" controls controlsList="nodownload" autoplay preload="auto">
             <source src="Audio%20pesebre%202.mpeg" type="audio/mpeg">
             Tu navegador no soporta el elemento de audio.
         </audio>
     </div>
 
     <script>
+        var audio = document.getElementById('audio-historia');
+        var mensaje = document.querySelector('.container p');
+
         // Al terminar el audio, redirige al Instagram de A Soto
-        document.getElementById('audio-historia').addEventListener('ended', function () {
+        audio.addEventListener('ended', function () {
             window.location.replace('https://www.instagram.com/asotoescultor/?hl=es-la');
         });
+
+        // Reproducción automática al abrir la página.
+        // Si el navegador la bloquea, empieza con el primer toque en la pantalla.
+        var eventos = ['click', 'touchend', 'keydown'];
+        function quitarEscuchas() {
+            eventos.forEach(function (e) { document.removeEventListener(e, alInteractuar); });
+        }
+        function alInteractuar() {
+            quitarEscuchas();
+            if (audio.paused) audio.play().catch(function () {});
+        }
+        audio.addEventListener('play', function () {
+            quitarEscuchas();
+            mensaje.textContent = 'Acerca tu celular para escuchar la historia';
+        });
+
+        var intento = audio.play();
+        if (intento !== undefined) {
+            intento.catch(function () {
+                mensaje.textContent = 'Toca la pantalla para escuchar la historia';
+                eventos.forEach(function (e) { document.addEventListener(e, alInteractuar); });
+            });
+        }
     </script>
 
 </body>
